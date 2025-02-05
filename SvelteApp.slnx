@@ -1,0 +1,4 @@
+<Solution>
+  <Project Path="SvelteApp.Client/SvelteApp.Client.esproj" />
+  <Project Path="SvelteApp.Server/SvelteApp.Server.csproj" />
+</Solution>

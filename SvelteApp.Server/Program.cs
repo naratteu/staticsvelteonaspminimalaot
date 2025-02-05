@@ -5,19 +5,6 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllers();
 builder.Services.AddSwaggerGen();
 
-const string WebsiteClientOrigin = "website_client";
-builder.Services.AddCors(options =>
-{
-    options.AddPolicy(WebsiteClientOrigin, policy =>
-    {
-        var website = builder.Configuration["Endpoints:Website"];
-        if (website != null)
-        {
-            policy.WithOrigins(website).AllowAnyHeader().AllowAnyMethod();
-        }
-    });
-});
-
 var app = builder.Build();
 
 if (app.Environment.IsDevelopment())
@@ -27,6 +14,7 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
-app.UseCors(WebsiteClientOrigin);
+app.UseDefaultFiles();
+app.UseStaticFiles();
 app.MapControllers();
 app.Run();
