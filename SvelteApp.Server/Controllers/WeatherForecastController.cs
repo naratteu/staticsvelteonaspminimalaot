@@ -1,10 +1,7 @@
-using Microsoft.AspNetCore.Mvc;
 using SvelteApp.Server.Models;
 namespace SvelteApp.Server.Controllers;
 
-[ApiController]
-[Route("[controller]")]
-public class WeatherForecastController : ControllerBase
+static class WeatherForecastController
 {
     private static readonly string[] Summaries =
     [
@@ -20,15 +17,7 @@ public class WeatherForecastController : ControllerBase
         "Scorching",
     ];
 
-    private readonly ILogger<WeatherForecastController> _logger;
-
-    public WeatherForecastController(ILogger<WeatherForecastController> logger)
-    {
-        _logger = logger;
-    }
-
-    [HttpGet]
-    public IEnumerable<WeatherForecast> Get()
+    public static IEnumerable<WeatherForecast> Get()
     {
         return Enumerable.Range(1, 5).Select(index => new WeatherForecast
         {

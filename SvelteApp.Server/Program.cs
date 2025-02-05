@@ -1,20 +1,24 @@
-var builder = WebApplication.CreateBuilder(args);
+using SvelteApp.Server.Controllers;
+using SvelteApp.Server.Models;
+using System.Text.Json.Serialization;
 
-// Add services to the container.
+var builder = WebApplication.CreateSlimBuilder(args);
 
-builder.Services.AddControllers();
-builder.Services.AddSwaggerGen();
+builder.Services.ConfigureHttpJsonOptions(options =>
+{
+    options.SerializerOptions.TypeInfoResolverChain.Insert(0, AppJsonSerializerContext.Default);
+});
 
 var app = builder.Build();
 
-if (app.Environment.IsDevelopment())
-{
-    app.UseSwagger();
-    app.UseSwaggerUI();
-}
 
-app.UseHttpsRedirection();
 app.UseDefaultFiles();
 app.UseStaticFiles();
-app.MapControllers();
+app.MapGet("/WeatherForecast", () => WeatherForecastController.Get());
 app.Run();
+
+[JsonSerializable(typeof(IEnumerable<WeatherForecast>))]
+internal partial class AppJsonSerializerContext : JsonSerializerContext
+{
+
+}
