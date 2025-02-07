@@ -11,9 +11,9 @@ builder.Services.ConfigureHttpJsonOptions(options =>
 
 var app = builder.Build();
 
-
-app.UseDefaultFiles();
-app.UseStaticFiles();
+var embed = new Microsoft.Extensions.FileProviders.ManifestEmbeddedFileProvider(System.Reflection.Assembly.GetExecutingAssembly(), "wwwroot");
+app.UseDefaultFiles(options: new() { FileProvider = embed });
+app.UseStaticFiles(options: new() { FileProvider = embed });
 app.MapGet("/WeatherForecast", () => WeatherForecastController.Get());
 app.Run();
 
