@@ -10,11 +10,9 @@
   </PropertyGroup>
   
   <ItemGroup>
+    <Content Remove="wwwroot/**" />
     <EmbeddedResource Include="wwwroot/**" />
     <PackageReference Include="Microsoft.Extensions.FileProviders.Embedded" Version="9.0.1" />
-    <ProjectReference Include="..\SvelteApp.Client\SvelteApp.Client.esproj">
-      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
-    </ProjectReference>
   </ItemGroup>
 
 </Project>
