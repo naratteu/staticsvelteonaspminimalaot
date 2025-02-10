@@ -14,5 +14,15 @@
     <EmbeddedResource Include="wwwroot/**" />
     <PackageReference Include="Microsoft.Extensions.FileProviders.Embedded" Version="9.0.1" />
   </ItemGroup>
+  
+  <ItemGroup Condition="$(RuntimeIdentifier.StartsWith('win'))">
+    <LinkerArg Include="/LIBPATH:../webui-windows-msvc-x64" />
+    
+    <DirectPInvoke Include="webui-2-static" />
+    <NativeLibrary Include="webui-2-static.lib" />
+
+    <NativeLibrary Include="user32.lib" />
+    <NativeLibrary Include="Shell32.lib" />
+  </ItemGroup>
 
 </Project>
