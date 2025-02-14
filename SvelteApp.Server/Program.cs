@@ -22,23 +22,10 @@ app.MapGet("/WeatherForecast", () => WeatherForecastController.Get());
 var run = app.RunAsync($"http://[::1]:0");
 var addr = app.Services.GetRequiredService<IServer>().Features.GetRequiredFeature<IServerAddressesFeature>().Addresses.Single();
 var win = webui_new_window();
-// todo: webui_show(win, addr);
-_ = webui_show(win, $$"""
-<html>
-    <script src="webui.js"></script>
-    <style>
-        html, body, iframe {
-            margin: 0;
-            padding: 0;
-            width: 100%;
-            height: 100%;
-            border: none;
-            position: absolute;
-        }
-    </style>
-    <iframe src="{{addr}}"></iframe>
-</html>
-""") ? true : throw new("webui_show fail");
+var port = webui_get_free_port();
+app.MapGet("/webui.js", () => Results.Redirect($"http://localhost:{port}/webui.js"));
+_ = webui_set_port(win, port) ? true : throw new("webui_set_port : fail");
+_ = webui_show(win, addr.Replace("[::1]", "localhost")) ? true : throw new("webui_show fail");
 await Task.WhenAny(run, Task.Run(webui_wait));
 
 [JsonSerializable(typeof(IEnumerable<WeatherForecast>))]
