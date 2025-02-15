@@ -33,3 +33,7 @@ dotnet publish ./SvelteApp.Server/SvelteApp.Server.csproj -o ./pub
 - 빌드 플로우 간소화
 - golang 백엔드로도 구현해보고싶음
 - https://github.com/MichalStrehovsky/PublishAotCompressed (upx)
+
+## See also
+
+- https://github.com/sneusse/aot-static-example
