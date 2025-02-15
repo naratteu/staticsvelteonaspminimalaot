@@ -22,8 +22,8 @@ dotnet publish ./SvelteApp.Server/SvelteApp.Server.csproj -o ./pub
 
 ## Done
 
-- win11-x64
-- linux-x64 (ChromeOS Flex)
+- win11-x64: 14MB -upx-> 5.6MB
+- linux-x64: 16MB -upx-> 6.2MB (ChromeOS Flex)
 
 ## Todo
 
@@ -32,7 +32,4 @@ dotnet publish ./SvelteApp.Server/SvelteApp.Server.csproj -o ./pub
 - webui 라이브러리 분리
 - 빌드 플로우 간소화
 - golang 백엔드로도 구현해보고싶음
-
-## See alse
-
 - https://github.com/MichalStrehovsky/PublishAotCompressed (upx)
