@@ -21,12 +21,15 @@ app.UseStaticFiles(options: new() { FileProvider = embed });
 app.MapGet("/WeatherForecast", () => WeatherForecastController.Get());
 var run = app.RunAsync($"http://[::1]:0");
 var addr = app.Services.GetRequiredService<IServer>().Features.GetRequiredFeature<IServerAddressesFeature>().Addresses.Single();
-var win = webui_new_window();
 var port = webui_get_free_port();
 app.MapGet("/webui.js", () => Results.Redirect($"http://localhost:{port}/webui.js"));
-_ = webui_set_port(win, port) ? true : throw new("webui_set_port : fail");
-_ = webui_show(win, addr.Replace("[::1]", "localhost")) ? true : throw new("webui_show fail");
-await Task.WhenAny(run, Task.Run(webui_wait));
+await Task.WhenAny(run, Task.Run(() =>
+{
+    var win = webui_new_window();
+    _ = webui_set_port(win, port) ? true : throw new("webui_set_port : fail");
+    _ = webui_show(win, addr.Replace("[::1]", "localhost")) ? true : throw new("webui_show fail");
+    webui_wait();
+}));
 
 [JsonSerializable(typeof(IEnumerable<WeatherForecast>))]
 internal partial class AppJsonSerializerContext : JsonSerializerContext

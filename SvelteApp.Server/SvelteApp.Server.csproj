@@ -25,4 +25,9 @@
     <NativeLibrary Include="Shell32.lib" />
   </ItemGroup>
 
+  <ItemGroup Condition="$(RuntimeIdentifier.StartsWith('linux'))">
+    <DirectPInvoke Include="webui-2-static" />
+    <NativeLibrary Include="../webui-linux-gcc-x64/libwebui-2-static.a" />
+  </ItemGroup>
+
 </Project>

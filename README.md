@@ -19,3 +19,20 @@ dotnet build ./SvelteApp.Client/SvelteApp.Client.esproj
 dotnet publish ./SvelteApp.Server/SvelteApp.Server.csproj -o ./pub
 ./pub/SvelteApp.Server
 ```
+
+## Done
+
+- win11-x64
+- linux-x64 (ChromeOS Flex)
+
+## Todo
+
+- Debug용 구성
+- macOS Test
+- webui 라이브러리 분리
+- 빌드 플로우 간소화
+- golang 백엔드로도 구현해보고싶음
+
+## See alse
+
+- https://github.com/MichalStrehovsky/PublishAotCompressed (upx)
