@@ -9,7 +9,7 @@ node -v # v23.7.0
 npm -v # 10.9.2
 dotnet --version # 9.0.200-preview.0.25057.12
 
-git clone https://github.com/naratteu/staticsvelteonaspminimalaot
+git clone https://github.com/naratteu/staticsvelteonaspminimalaot --branch webui
 cd staticsvelteonaspminimalaot
 
 curl -L "https://github.com/webui-dev/webui/releases/download/2.5.0-beta.2/webui-windows-msvc-x64.zip" | tar -x # 윈도우용 명령
