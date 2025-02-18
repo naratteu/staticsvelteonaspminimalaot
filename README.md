@@ -39,5 +39,6 @@ dotnet publish ./SvelteApp.Server/SvelteApp.Server.csproj -o ./pub
 
 ## Thanks
 
+- https://github.com/Quickz/svelte-dotnet-template
 - https://github.com/webui-dev/webui
 - https://github.com/sneusse/aot-static-example
